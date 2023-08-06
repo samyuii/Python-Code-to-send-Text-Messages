@@ -1,26 +1,20 @@
-Python Code to send Text messages/SMS
+# Python Code to send Text messages/SMS
 
 
 
-
-import requests
 from twilio.rest import Client
 
-api_endpoint = "https://api.twilio.com/2010-04-01/Accounts/ACe34f0af9b106353af8754b667775ad05/Messages.json"
-api_key = "164f724606d80fc117bf87d571e120a4"
+account_sid = "your_account_sid"
+auth_token = "your_auth_token"
+client = Client(account_sid, auth_token)
 
-phone_number = "+917014471298"
+phone_number = "+91**********"  # Replace with the recipient's phone number
 message = "This is a test message sent from Python using Twilio API."
 
-data = {
-    "To": phone_number,
-    "Body": message,
-    "From": "+917610805234"  # Replace with your Twilio phone number
-}
+message = client.messages.create(
+    body=message,
+    from_="your_twilio_phone_number",
+    to=phone_number
+)
 
-try:
-    response = requests.post(api_endpoint, auth=("ACe34f0af9b106353af8754b667775ad05", api_key), data=data)
-    response.raise_for_status()
-    print("SMS Successfully Sent")
-except requests.exceptions.RequestException as e:
-    print("Failed to send SMS. Error:", str(e))
+print("SMS Sent with SID:", message.sid)
