@@ -8,7 +8,7 @@ account_sid = "your_account_sid"
 auth_token = "your_auth_token"
 client = Client(account_sid, auth_token)
 
-phone_number = "+91**********"  # Replace with the recipient's phone number
+phone_number = "+91**********"  # Replace this with recipient's phone number
 message = "This is a test message sent from Python using Twilio API."
 
 message = client.messages.create(
